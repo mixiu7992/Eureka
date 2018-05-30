@@ -75,6 +75,15 @@ open class _PickerInputCell<T> : Cell<T>, CellType, UIPickerViewDataSource, UIPi
 
         picker.reloadAllComponents()
     }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        var frame = textLabel?.frame
+        frame?.origin.y = 0
+        frame?.size.height = height?() ?? 44
+        frame?.size.width = self.frame.width - 2 * 15
+        textLabel?.frame = frame ?? .zero
+    }
 
     open override func didSelect() {
         super.didSelect()
